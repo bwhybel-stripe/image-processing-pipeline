@@ -1,0 +1,18 @@
+{
+    "operations": [
+        {
+            "name": "grayscale",
+            "parameters": {}
+        },
+        {
+            "name": "brightness",
+            "parameters": {
+                "factor": 1.5
+            }
+        },
+        {
+            "name": "invert",
+            "parameters": {}
+        }
+    ]
+}
