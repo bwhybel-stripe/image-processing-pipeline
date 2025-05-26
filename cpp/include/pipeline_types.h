@@ -6,16 +6,13 @@
 
 namespace image_pipeline
 {
-
-    using OperationParameter = std::variant<int, float, std::string, bool>;
-
     struct OperationConfig
     {
         std::string name; // e.g., "grayscale", "resize", "blur", "brightness"
-        std::map<std::string, OperationParameter> parameters;
+        std::map<std::string, int> parameters;
         // e.g., for resize: {"width": 800, "height": 600}
-        // e.g., for brightness: {"factor": 1.2f}
-        // e.g., for blur: {"radius": 5}
+        // e.g., for brightness: {"factor": 120} (120%)
+        // e.g., for resize: {"radius": 50} (50%)
     };
 
     // Could add more result details if needed

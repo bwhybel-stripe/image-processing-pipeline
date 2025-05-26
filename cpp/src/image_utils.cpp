@@ -15,7 +15,6 @@
 namespace image_pipeline
 {
 
-    // --- Image Struct Methods ---
     Image::Image(int w, int h, int c, const uint8_t *data) : width(w), height(h), channels(c)
     {
         if (w > 0 && h > 0 && c > 0)
@@ -96,16 +95,13 @@ namespace image_pipeline
             return false;
         }
 
-        image.width = w;
-        image.height = h;
-        image.channels = c;
-        image.pixels.assign(data, data + static_cast<size_t>(w) * h * c);
-
+        /* Part I - to be completed */
+        
         stbi_image_free(data);
         return true;
     }
 
-    bool saveImage(const std::string &filename, const Image &image, const std::string &format)
+    bool saveImage(const std::string &filename, const Image &image)
     {
         if (!image.isValid())
         {
@@ -114,15 +110,7 @@ namespace image_pipeline
         }
 
         int success = 0;
-        if (format == "png")
-        {
-            success = stbi_write_png(filename.c_str(), image.width, image.height, image.channels, image.pixels.data(), image.width * image.channels);
-        }
-        else
-        {
-            std::cerr << "Save Error: Unsupported format: " << format << std::endl;
-            return false;
-        }
+        success = stbi_write_png(filename.c_str(), image.width, image.height, image.channels, image.pixels.data(), image.width * image.channels);
 
         if (!success)
         {

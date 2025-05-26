@@ -14,7 +14,7 @@ using namespace image_pipeline;
 #include "nlohmann/json.hpp"
 using json = nlohmann::json;
 std::vector<OperationConfig> load_operations_from_json(const std::string& config_path) {
-    /* Part IV */
+    /* Part IV - to be implemented */
     std::vector<OperationConfig> operations;
     return operations;
 }
@@ -40,11 +40,14 @@ int main(int argc, char *argv[])
             return 1;
         }
     } else {
-        operations.push_back({"grayscale", {}});
+        operations.push_back({});
+        /* Part II - uncomment to test */
+        // operations.push_back({"grayscale", {}});
+        /* Part III - uncomment to test */
         // operations.push_back({"brightness", {{"factor", 1.5f}}});
         // operations.push_back({"invert", {}});
+        /* Part V - uncomment to test */
         // operations.push_back({"resize", {{"width", 100}, {"height", 100}}});
-        // operations.push_back({"blur", {{"radius", 3}}});
     }
 
     PipelineExecutor executor;

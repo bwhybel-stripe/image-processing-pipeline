@@ -5,14 +5,12 @@
 
 namespace image_pipeline
 {
-
-    // Simple Image class to hold pixel data
     struct Image
     {
-        std::vector<uint8_t> pixels; // Flattened pixel data (R, G, B, A, R, G, B, A, ...)
+        std::vector<uint8_t> pixels;
         int width = 0;
         int height = 0;
-        int channels = 0; // Number of color channels (e.g., 3 for RGB, 4 for RGBA)
+        int channels = 0;
 
         Image() = default;
         Image(int w, int h, int c, const uint8_t *data = nullptr);
@@ -21,13 +19,16 @@ namespace image_pipeline
         Image &operator=(const Image &other);
         Image &operator=(Image &&other) noexcept;
 
-        bool isValid() const { return width > 0 && height > 0 && channels > 0 && !pixels.empty(); }
+        bool isValid() const {
+            /* Part I - to be completed */
+            return false;
+        }
         size_t pixelDataSize() const { return static_cast<size_t>(width) * height * channels; }
-        uint8_t &at(int x, int y, int channel);             // For modification
-        const uint8_t &at(int x, int y, int channel) const; // For const access
+        uint8_t &at(int x, int y, int channel);
+        const uint8_t &at(int x, int y, int channel) const;
     };
 
     bool loadImage(const std::string &filename, Image &image);
-    bool saveImage(const std::string &filename, const Image &image, const std::string &format = "png"); // format could be "png", "jpg", "bmp"
+    bool saveImage(const std::string &filename, const Image &image);
 
 } // namespace image_pipeline
