@@ -85,15 +85,6 @@ namespace image_pipeline
                 }
             }
 
-            std::string output_format = "png";
-            size_t dot_pos = outputImagePath.find_last_of(".");
-
-            if (dot_pos == std::string::npos ||
-                outputImagePath.substr(dot_pos + 1) != output_format)
-            {
-                return {PipelineResultStatus::CONFIG_ERROR, "Output image filepath must end with ." + output_format + ": " + outputImagePath};
-            }
-
             if (!saveImage(outputImagePath, image))
             {
                 return {PipelineResultStatus::SAVE_ERROR, "Failed to save output image: " + outputImagePath};

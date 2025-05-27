@@ -6,33 +6,19 @@ import java.io.File;
 import java.io.IOException;
 
 public class ImageUtils {
+    /* Load an image from the specified file path.
+     * Throws IOException if the image cannot be read.
+     */
     public static BufferedImage loadImage(String filePath) throws IOException {
-        File imageFile = new File(filePath);
-        if (!imageFile.exists()) {
-            throw new IOException("Image file not found: " + filePath);
-        }
-        BufferedImage image = ImageIO.read(imageFile);
-        if (image == null) {
-            throw new IOException("Could not read image (unsupported format or corrupt): " + filePath);
-        }
-        return image;
+        // Part I to be implemented
+        return new BufferedImage(0,0,0); // Placeholder, replace with actual image loading logic
     }
 
-    public static void saveImage(BufferedImage image, String filePath, String formatName) throws IOException {
-        // formatName examples: "png", "jpg", "bmp"
-        // Ensure the directory exists or ImageIO.write might fail silently or throw error depending on OS/permissions
+    public static void saveImage(BufferedImage image, String filePath) throws IOException {
         File outputFile = new File(filePath);
-        File parentDir = outputFile.getParentFile();
-        if (parentDir != null && !parentDir.exists()) {
-            if (!parentDir.mkdirs()) {
-                throw new IOException("Could not create parent directories for: " + filePath);
-            }
-        }
-
-        boolean success = ImageIO.write(image, formatName, outputFile);
+        boolean success = ImageIO.write(image, "png", outputFile);
         if (!success) {
-            throw new IOException("Failed to write image. No appropriate writer found for format: " + formatName);
+            throw new IOException("Failed to write image");
         }
     }
-
 }

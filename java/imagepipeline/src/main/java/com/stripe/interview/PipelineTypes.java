@@ -17,29 +17,21 @@ public class PipelineTypes {
         UNSUPPORTED_OPERATION
     }
 
-    // OperationConfig as a traditional class
-    public static final class OperationConfig { // Often made final for data classes
+    public static final class OperationConfig {
         private final String name;
-        private final Map<String, Object> parameters; // e.g., {"factor": 1.5f, "width": 100}
+        private final Map<String, Integer> parameters;
 
-        public OperationConfig(String name, Map<String, Object> parameters) {
-            if (name == null) {
-                throw new NullPointerException("Operation name cannot be null");
-            }
+        public OperationConfig(String name, Map<String, Integer> parameters) {
             this.name = name;
-            // Store an unmodifiable copy of the parameters map to ensure immutability
-            this.parameters = (parameters != null) ? Collections.unmodifiableMap(new HashMap<>(parameters)) : Collections.emptyMap();
+            this.parameters = parameters;
         }
 
         public String getName() {
             return name;
         }
 
-        public Map<String, Object> getParameters() {
-            // The internal map is already unmodifiable, so we can return it directly.
-            // If we hadn't made an unmodifiable copy in the constructor,
-            // we'd return new HashMap<>(parameters) here.
-            return parameters;
+        public Map<String, Integer> getParameters() {
+            return new HashMap<>(parameters);
         }
 
         @Override
